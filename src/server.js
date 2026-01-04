@@ -1,4 +1,5 @@
-require("dotenv").config(); // ✅ top pe
+require("dotenv").config(); //  top pe
+
 
 const connectDB = require("./config/db");
 const app = require("./app");

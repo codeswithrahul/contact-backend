@@ -1,16 +1,10 @@
-let users = []; // temporary in-memory data
+const User = require("../models/user.model");
 
-exports.createUserService = ({ name, email }) => {
-  const newUser = {
-    id: users.length + 1,
-    name,
-    email
-  };
-
-  users.push(newUser);
-  return newUser;
+exports.createUserService = async ({ name, email }) => {
+  const user = await User.create({ name, email });
+  return user;
 };
 
-exports.fetchUsers = () => {
-  return users;
+exports.fetchUsers = async () => {
+  return await User.find();
 };

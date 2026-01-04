@@ -11,7 +11,7 @@ exports.getUsers = (req, res) => {
 };
 
 
-exports.createUser = (req, res) => {
+exports.createUser = async (req, res) => {
     try {
       const { name, email } = req.body;
   
@@ -22,7 +22,7 @@ exports.createUser = (req, res) => {
         });
       }
   
-      const user = createUserService({ name, email });
+      const user = await createUserService({ name, email });
   
       res.status(201).json({
         success: true,
