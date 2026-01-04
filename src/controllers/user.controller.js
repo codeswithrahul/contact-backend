@@ -1,4 +1,5 @@
 // user.controller.js
+const { createUserService } = require("../services/user.service");
 const { fetchUsers } = require("../services/user.service");
 
 exports.getUsers = (req, res) => {
@@ -11,21 +12,31 @@ exports.getUsers = (req, res) => {
 
 
 exports.createUser = (req, res) => {
-    const { name, email } = req.body;
+    try {
+      const { name, email } = req.body;
   
-    // Basic validation
-    if (!name || !email) {
-      return res.status(400).json({
+      if (!name || !email) {
+        return res.status(400).json({
+          success: false,
+          message: "Name and Email are required"
+        });
+      }
+  
+      const user = createUserService({ name, email });
+  
+      res.status(201).json({
+        success: true,
+        message: "User created successfully",
+        data: user
+      });
+    } catch (error) {
+      console.error("Create user error:", error);
+  
+      res.status(500).json({
         success: false,
-        message: "Name and Email are required"
+        message: "Internal Server Error",
+        error: error.message
       });
     }
-  
-    const user = createUserService({ name, email });
-  
-    res.status(201).json({
-      success: true,
-      message: "User created successfully",
-      data: user
-    });
   };
+  
