@@ -1,10 +1,9 @@
 const User = require("../models/user.model");
 
-exports.createUserService = async ({ name, email }) => {
-  const user = await User.create({ name, email });
-  return user;
+exports.fetchUsers = async () => {
+  return await User.find().sort({ createdAt: -1 });
 };
 
-exports.fetchUsers = async () => {
-  return await User.find();
+exports.createUserService = async (data) => {
+  return await User.create(data);
 };
