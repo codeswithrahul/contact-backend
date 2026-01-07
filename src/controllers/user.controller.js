@@ -17,21 +17,20 @@ exports.getUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email ,messages} = req.body;
 
-    if (!name || !email) {
+    if (!name || !email || !messages) {
       return res.status(400).json({
         success: false,
         message: "Name and Email are required"
       });
     }
 
-    const user = await createUserService({ name, email });
+    const user = await createUserService({ name, email,messages });
 
     res.status(201).json({
       success: true,
-      message: "User created successfully",
-      data: user
+      message: "message sent successfully",
     });
   } catch (error) {
     res.status(500).json({

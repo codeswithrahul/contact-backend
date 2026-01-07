@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  messages: {
+    type: String,
+    required: true,
   }
 }, { timestamps: true });
 
