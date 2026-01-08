@@ -10,6 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 const userRoutes = require("./routes/user.routes");
+const contactRoutes = require("./routes/contact.routes");
+
 app.use("/api/users", userRoutes);
+app.use("/api/contacts", contactRoutes);
 
 module.exports = app;
