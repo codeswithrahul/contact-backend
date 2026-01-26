@@ -25,9 +25,7 @@ exports.createUser = async (req, res) => {
         message: "Name and Email are required"
       });
     }
-
     const user = await createUserService({ name, email,messages });
-
     res.status(201).json({
       success: true,
       message: "message sent successfully",
